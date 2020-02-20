@@ -1,5 +1,5 @@
-# https://romanova404.github.io/sprint13/ v1.0.1
-Актуальная версия v1.0.1
+# https://romanova404.github.io/sprint13/ v1.0.2
+Актуальная версия v1.0.2
 
 ### Сборки(настройки можно посмотреть в package.json - "scripts")
 
@@ -15,4 +15,4 @@
 Для тренировки Node.js, API, Express.js, MongoDB
 
 ### Используемые технологии
-HTML, CSS, JS, GIT, Webpack, Node.js, Express.js# sprint13 mongoose(MongoDB)
+HTML, CSS, JS, GIT, Webpack, Node.js, Express.js, mongoose(MongoDB)

@@ -2,17 +2,17 @@ const { celebrate, Joi } = require('celebrate');
 
 const createUserCheck = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required(),
-    about: Joi.string().required(),
-    avatar: Joi.string().required()
-  })
-})
+    name: Joi.string().min(2).max(30).required(),
+    about: Joi.string().min(2).max(30).required(),
+    avatar: Joi.string().required(),
+  }),
+});
 
 const createCardCheck = celebrate({
   body: Joi.object().keys({
-    name: Joi.string().required(),
-    link: Joi.string().required()
-  })
-})
+    name: Joi.string().min(2).max(30).required(),
+    link: Joi.string().required(),
+  }),
+});
 
-module.exports = { createUserCheck, createCardCheck }
+module.exports = { createUserCheck, createCardCheck };

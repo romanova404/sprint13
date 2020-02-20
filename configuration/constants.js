@@ -11,5 +11,5 @@ module.exports = {
   NOT_FOUND,
   ITEM_NOT_FOUND,
   BAD_REQUEST,
-  SERVER_ERROR
-}
+  SERVER_ERROR,
+};
