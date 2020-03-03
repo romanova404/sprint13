@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const validator = require('validator');
-const { INVALID_LINK } = require('../configuration/constants');
 
 
 const cardSchema = new mongoose.Schema({
@@ -29,6 +28,6 @@ const cardSchema = new mongoose.Schema({
   },
 });
 
-cardSchema.path('link').validate(validator.isURL, INVALID_LINK);
+cardSchema.path('link').validate(validator.isURL, 'Неверный формат ссылки');
 
 module.exports = mongoose.model('card', cardSchema);

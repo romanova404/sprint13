@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 
 const routes = require('./routes');
+// const { errorHandler } = require('./middlewares/errorHandler');
 
 const app = express();
 
@@ -18,16 +19,19 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use((req, res, next) => {
   req.user = {
-    _id: '5e44647cabaee231048130ab'
+    _id: '5e44647cabaee231048130ab',
   };
 
   next();
 });
 
-
 app.use(bodyParser.json());
-app.use(errors());
 app.use('/', routes);
+app.use(errors());
+
+
+// app.use(errorHandler);
+
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
