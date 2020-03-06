@@ -14,15 +14,24 @@ module.exports.createCard = (req, res) => {
   const { name, link } = req.body;
   cardModel.create({ name, link, owner: req.user._id })
     .then((card) => res.status(200).send({ data: card }))
-    .catch(() => res.status(500).send({ message: 'Произошла ошибка' }));
+    .catch((err) => ((err.name === 'ValidationError') ? res.status(400).send({ message: 'Ошибка валидации' }) : res.status(500).send({ message: 'Произошла ошибка' })));
 };
 
 module.exports.deleteCard = (req, res) => {
   const { cardId } = req.params;
+
   if (!ObjectId.isValid(cardId)) {
     res.status(400).send({ message: 'Невалидный id' });
+    return;
   }
-  cardModel.findByIdAndRemove(req.params.cardId)
-    .then((card) => (card ? res.status(200).send({ data: card }) : res.status(404).send({ message: 'Нет карточки с таким id' })))
+  cardModel.findByIdAndRemove(cardId)
+    .then((card) => {
+      if (!card) {
+        res.status(404).send({ message: 'Нет карточки с таким id' });
+      } else if (!card.owner === req.user._id) {
+        res.status(401).send({ message: 'Невозможно удалить чужую карточку' });
+      }
+      res.status(200).send({ data: card });
+    })
     .catch(() => res.status(500).send({ message: 'Произошла ошибка' }));
 };

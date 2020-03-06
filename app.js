@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 
 const routes = require('./routes');
-// const { errorHandler } = require('./middlewares/errorHandler');
 
 const app = express();
 
@@ -28,10 +27,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use('/', routes);
 app.use(errors());
-
-
-// app.use(errorHandler);
-
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);

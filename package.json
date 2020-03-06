@@ -1,6 +1,6 @@
 {
   "name": "mesto1",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "https://romanova404.github.io/sprint13/ v1.0.2\r Актуальная версия v1.0.3",
   "main": "app.js",
   "scripts": {
@@ -13,6 +13,7 @@
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.18.2",
+    "jest": "^25.1.0",
     "nodemon": "^2.0.2"
   },
   "dependencies": {
@@ -20,6 +21,7 @@
     "celebrate": "^11.0.1",
     "express": "^4.17.1",
     "mongoose": "^5.8.11",
+    "mongoose-type-url": "^1.0.6",
     "mongoose-validator": "^2.1.0",
     "validator": "^12.2.0"
   },

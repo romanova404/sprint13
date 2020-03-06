@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-
+require('mongoose-type-url');
 const validator = require('validator');
-
 
 const cardSchema = new mongoose.Schema({
   name: {
@@ -11,7 +10,7 @@ const cardSchema = new mongoose.Schema({
     required: true,
   },
   link: {
-    type: String,
+    type: mongoose.SchemaTypes.Url,
     required: true,
   },
   owner: {
@@ -28,6 +27,6 @@ const cardSchema = new mongoose.Schema({
   },
 });
 
-cardSchema.path('link').validate(validator.isURL, 'Неверный формат ссылки');
 
+cardSchema.path('link').validate(validator.isURL, 'Неверный формат ссылки');
 module.exports = mongoose.model('card', cardSchema);
