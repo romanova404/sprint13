@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-require('mongoose-type-url');
 const validator = require('validator');
 
 const userSchema = new mongoose.Schema({
@@ -17,7 +16,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     required: true,
-    type: mongoose.SchemaTypes.Url,
+    type: String,
   },
 });
 

@@ -24,14 +24,17 @@ module.exports.deleteCard = (req, res) => {
     res.status(400).send({ message: 'Невалидный id' });
     return;
   }
-  cardModel.findByIdAndRemove(cardId)
+  cardModel.findById(cardId)
     .then((card) => {
       if (!card) {
         res.status(404).send({ message: 'Нет карточки с таким id' });
-      } else if (!card.owner === req.user._id) {
+      } else if (card.owner.toString() !== req.user._id) {
         res.status(401).send({ message: 'Невозможно удалить чужую карточку' });
+      } else {
+        cardModel.findByIdAndRemove(cardId)
+          .then(() => res.status(200).send({ data: card }))
+          .catch(() => res.status(500).send({ message: 'Что-то пошло не так' }));
       }
-      res.status(200).send({ data: card });
     })
     .catch(() => res.status(500).send({ message: 'Произошла ошибка' }));
 };
